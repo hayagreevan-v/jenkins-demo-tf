@@ -14,7 +14,13 @@ pipeline {
         stage("Terraform init"){
             steps {
                 dir("jenkins-demo-tf"){
-                    withAWS(credentials: 'aws-training', region: 'us-east-1'){
+                    withCredentials([
+                    aws(
+                        credentialsId: 'aws-training',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    )
+                ]){
                         sh "terraform init"
                     }
                 }
@@ -23,7 +29,13 @@ pipeline {
         stage("Terraform plan"){
             steps {
                 dir("jenkins-demo-tf"){
-                    withAWS(credentials: 'aws-training', region: 'us-east-1'){
+                    withCredentials([
+                    aws(
+                        credentialsId: 'aws-training',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    )
+                ]){
                         sh "terraform plan"
                     }
                 }
@@ -32,7 +44,13 @@ pipeline {
         stage("Terraform apply"){
             steps {
                 dir("jenkins-demo-tf"){
-                    withAWS(credentials: 'aws-training', region: 'us-east-1'){
+                    withCredentials([
+                    aws(
+                        credentialsId: 'aws-training',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    )
+                ]){
                         sh "terraform apply"
                     }
                 }
