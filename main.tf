@@ -1,3 +1,6 @@
+provider "aws" {
+  region = "us-east-1"
+}
 resource "aws_s3_bucket" "hex-s3-tf-bucket" {
   bucket = "hex-s3-tf-bucket"
   region = "us-east-1"
