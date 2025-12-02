@@ -14,21 +14,27 @@ pipeline {
         stage("Terraform init"){
             steps {
                 dir("jenkins-demo-tf"){
-                    sh "terraform init"
+                    withAWS(credentials: 'aws-training', region: 'us-east-1'){
+                        sh "terraform init"
+                    }
                 }
             }
         }
         stage("Terraform plan"){
             steps {
                 dir("jenkins-demo-tf"){
-                    sh "terraform plan"
+                    withAWS(credentials: 'aws-training', region: 'us-east-1'){
+                        sh "terraform plan"
+                    }
                 }
             }
         }
         stage("Terraform apply"){
             steps {
                 dir("jenkins-demo-tf"){
-                    sh "terraform apply"
+                    withAWS(credentials: 'aws-training', region: 'us-east-1'){
+                        sh "terraform apply"
+                    }
                 }
             }
         }
