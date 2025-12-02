@@ -41,6 +41,17 @@ pipeline {
                 }
             }
         }
+
+        stage("Approve Deployment") {
+            steps {
+                script {
+                    timeout(time: 10, unit: 'MINUTES') {
+                        input message: "Do you want to proceed with Terraform APPLY?"
+                    }
+                }
+            }
+        }
+
         stage("Terraform apply"){
             steps {
                 dir("jenkins-demo-tf"){
@@ -51,7 +62,7 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                     )
                 ]){
-                        sh "terraform apply"
+                        sh "terraform apply --auto-approve"
                     }
                 }
             }
