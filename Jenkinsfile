@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers{
+        pollSCM('* * * * *')
+    }
     stages {
         stage("Clean up"){
             steps {
@@ -43,6 +46,9 @@ pipeline {
         }
 
         stage("Approve Deployment") {
+            when{
+                branch 'main'
+            }
             steps {
                 script {
                     timeout(time: 10, unit: 'MINUTES') {
@@ -53,6 +59,9 @@ pipeline {
         }
 
         stage("Terraform apply"){
+            when{
+                branch 'main'
+            }
             steps {
                 dir("jenkins-demo-tf"){
                     withCredentials([
