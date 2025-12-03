@@ -5,16 +5,7 @@ pipeline {
     }
 
     stages {
-        stage("Clean up"){
-            steps {
-                deleteDir()
-            }
-        }
-        stage("Clone Repo"){
-            steps {
-                checkout scm
-            }
-        }
+
         stage("Terraform init"){
             steps {
                 
@@ -82,6 +73,11 @@ pipeline {
                     }
                 }
             
+        }
+        stage("Clean up"){
+            steps {
+                deleteDir()
+            }
         }
     }
 }
