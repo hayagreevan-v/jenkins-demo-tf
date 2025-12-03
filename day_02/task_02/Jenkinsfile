@@ -20,7 +20,17 @@ pipeline {
         }
         stage("Deploy"){
             steps {
-                sh 'echo "Deploying ${ENVIRONMENT}"'
+                script {
+                    if(ENVIRONMENT == 'dev'){
+                        sh 'echo "Deploying ${ENVIRONMENT} - Development"'
+                    }
+                    else if(ENVIRONMENT == 'prod'){
+                        sh 'echo "Deploying ${ENVIRONMENT}" - Production'
+                    }
+                    else if(ENVIRONMENT == 'test'){
+                        sh 'echo "Deploying ${ENVIRONMENT} - Test"'
+                    }
+                }
             }
         }
     }
