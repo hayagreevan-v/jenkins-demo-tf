@@ -3,12 +3,7 @@ pipeline {
     triggers{
         pollSCM('* * * * *')
     }
-    parameters {
-        booleanParam(
-            name: 'RUN_TERRAFORM_APPLY',
-            defaultValue: false,
-        )
-    }
+
     stages {
         stage("Clean up"){
             steps {
@@ -54,7 +49,6 @@ pipeline {
         stage("Approve Deployment") {
             when{
                 branch 'main'
-                expression { params.RUN_TERRAFORM_APPLY == true }
             }
             steps {
                 script {
@@ -68,7 +62,6 @@ pipeline {
         stage("Terraform apply"){
             when{
                 branch 'main'
-                 expression { params.RUN_TERRAFORM_APPLY == true }
             }
             steps {
                 dir("jenkins-demo-tf"){
