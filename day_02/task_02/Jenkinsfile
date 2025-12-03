@@ -25,7 +25,7 @@ pipeline {
                         sh 'echo "Deploying ${ENVIRONMENT} - Development"'
                     }
                     else if($ENVIRONMENT == 'prod'){
-                        sh 'echo "Deploying ${ENVIRONMENT}" - Production'
+                        sh 'echo "Deploying ${ENVIRONMENT}" - Production"'
                     }
                     else if($ENVIRONMENT == 'test'){
                         sh 'echo "Deploying ${ENVIRONMENT} - Test"'
