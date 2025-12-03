@@ -17,7 +17,7 @@ pipeline {
         }
         stage("Terraform init"){
             steps {
-                dir("jenkins-demo-tf"){
+                
                     withCredentials([
                     aws(
                         credentialsId: 'aws-training',
@@ -28,11 +28,11 @@ pipeline {
                         sh "terraform init"
                     }
                 }
-            }
+            
         }
         stage("Terraform plan"){
             steps {
-                dir("jenkins-demo-tf"){
+                
                     withCredentials([
                     aws(
                         credentialsId: 'aws-training',
@@ -43,7 +43,7 @@ pipeline {
                         sh "terraform plan"
                     }
                 }
-            }
+            
         }
 
         stage("Approve Deployment") {
@@ -70,7 +70,7 @@ pipeline {
                 }
             }
             steps {
-                dir("jenkins-demo-tf"){
+                
                     withCredentials([
                     aws(
                         credentialsId: 'aws-training',
@@ -81,7 +81,7 @@ pipeline {
                         sh "terraform apply --auto-approve"
                     }
                 }
-            }
+            
         }
     }
 }
