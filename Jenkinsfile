@@ -12,7 +12,7 @@ pipeline {
         }
         stage("Clone Repo"){
             steps {
-                sh "git clone https://github.com/hayagreevan-v/jenkins-demo-tf.git"
+                checkout scm
             }
         }
         stage("Terraform init"){
