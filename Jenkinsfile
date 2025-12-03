@@ -48,7 +48,10 @@ pipeline {
 
         stage("Approve Deployment") {
             when{
-                branch 'main'
+                anyOf {
+                    branch 'main'
+                    branch 'master'
+                }
             }
             steps {
                 script {
@@ -61,7 +64,10 @@ pipeline {
 
         stage("Terraform apply"){
             when{
-                branch 'main'
+                anyOf {
+                    branch 'main'
+                    branch 'master'
+                }
             }
             steps {
                 dir("jenkins-demo-tf"){
@@ -77,10 +83,5 @@ pipeline {
                 }
             }
         }
-    }
-}
-post {
-    always {
-        cleanWs()
     }
 }
