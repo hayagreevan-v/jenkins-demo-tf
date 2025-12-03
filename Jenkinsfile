@@ -39,9 +39,8 @@ pipeline {
 
         stage("Approve Deployment") {
             when{
-                anyOf {
-                    branch 'main'
-                    branch 'master'
+                expression {
+                    env.GIT_BRANCH == "origin/main" || env.GIT_BRANCH == "origin/master"
                 }
             }
             steps {
@@ -55,9 +54,8 @@ pipeline {
 
         stage("Terraform apply"){
             when{
-                anyOf {
-                    branch 'main'
-                    branch 'master'
+                expression {
+                    env.GIT_BRANCH == "origin/main" || env.GIT_BRANCH == "origin/master"
                 }
             }
             steps {
