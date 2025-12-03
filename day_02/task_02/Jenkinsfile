@@ -21,13 +21,13 @@ pipeline {
         stage("Deploy"){
             steps {
                 script {
-                    if(ENVIRONMENT == 'dev'){
+                    if($ENVIRONMENT == 'dev'){
                         sh 'echo "Deploying ${ENVIRONMENT} - Development"'
                     }
-                    else if(ENVIRONMENT == 'prod'){
+                    else if($ENVIRONMENT == 'prod'){
                         sh 'echo "Deploying ${ENVIRONMENT}" - Production'
                     }
-                    else if(ENVIRONMENT == 'test'){
+                    else if($ENVIRONMENT == 'test'){
                         sh 'echo "Deploying ${ENVIRONMENT} - Test"'
                     }
                 }
